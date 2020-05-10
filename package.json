@@ -25,6 +25,9 @@
   "eslintConfig": {
     "extends": "react-app"
   },
+  "engines": {
+    "node": "10.19.x"
+  },
   "browserslist": {
     "production": [
       ">0.2%",
@@ -37,7 +40,7 @@
       "last 1 safari version"
     ]
   },
-  "homepage": "https://aditj.github.io/bridge",
+  "homepage": ".",
   "devDependencies": {
     "gh-pages": "^2.2.0"
   }
