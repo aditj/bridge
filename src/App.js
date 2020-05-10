@@ -8,7 +8,7 @@ import './App.css';
 import { Client } from 'boardgame.io/react';
 // import { Local } from 'boardgame.io/multiplayer';
 const PORT = process.env.PORT || 8800;
-const server = 'http://localhost:8800'+PORT;
+const server = 'https://bridgem.herokuapp.com/'+PORT;
 
 const TicTacToeClient = Client({
   game: TicTacToe,
