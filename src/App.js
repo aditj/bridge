@@ -1,33 +1,43 @@
-//import React from 'react';
+import React from 'react';
 //import logo from './logo.svg';
 import  TicTacToeBoard   from './components/TicTacToeBoard.js';
+import  { TicTacToe }  from './components/TicTacToeGame.js';
+import { SocketIO } from "boardgame.io/multiplayer";
+
 import './App.css';
 import { Client } from 'boardgame.io/react';
+// import { Local } from 'boardgame.io/multiplayer';
 
-function IsVictory(cells){
+const PORT = process.env.PORT || 8000;
 
-}
-function IsDraw(cells){
-  return cells.filter(c=> c===null).length===0;
-}
+const TicTacToeClient = Client({
+  game: TicTacToe,
+  board: TicTacToeBoard,
+  multiplayer: SocketIO({ server: 'https://bridgem.herokuapp.com:'+PORT }),
+});
+class App extends React.Component {
+  state = { playerID: null };
 
-const TicTacToe= {
-  setup: ()=> ({ cells: Array(9).fill(null)}),
-  moves: {
-    clickCell: (G,ctx,id) => {
-      G.cells[id]=ctx.currentPlayer;
-    },
-  },
-  endIf: (G,ctx) => {
-    if (IsVictory(G.cells)){
-      return {winner:ctx.currentPlayer};
+  render() {
+    if (this.state.playerID === null) {
+      return (
+        <div>
+          <p>Play as</p>
+          <button onClick={() => this.setState({ playerID: "0" })}>
+            Player 0
+          </button>
+          <button onClick={() => this.setState({ playerID: "1" })}>
+            Player 1
+          </button>
+        </div>
+      );
     }
-    if (IsDraw(G.cells)){
-      return {draw:true};
-    }
-
-  },
-};
-const App = Client({ game: TicTacToe,board:TicTacToeBoard });
+    return (
+      <div>
+        <TicTacToeClient playerID={this.state.playerID} />
+      </div>
+    );
+  }
+}
 
 export default App;
