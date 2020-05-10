@@ -8,13 +8,15 @@
     "@testing-library/user-event": "^7.1.2",
     "boardgame.io": "^0.39.10",
     "esm": "^3.2.25",
+    "koa-mount": "^4.0.0",
+    "koa-static": "^5.0.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.1",
     "serve": "^11.3.0"
   },
   "scripts": {
-    "start": " node -r esm src/server.js && serve -s build",
+    "start": "node -r esm src/server.js",
     "dev": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
