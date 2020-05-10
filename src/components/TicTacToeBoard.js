@@ -1,5 +1,4 @@
 import React from 'react';
-import App from './App';
 class TicTacToeBoard extends React.Component{
     onClick(id){
         if(this.isActive(id)){

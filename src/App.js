@@ -1,6 +1,6 @@
-import React from 'react';
-import logo from './logo.svg';
-import  TicTacToeBoard   from './TicTacToeBoard.js';
+//import React from 'react';
+//import logo from './logo.svg';
+import  TicTacToeBoard   from './components/TicTacToeBoard.js';
 import './App.css';
 import { Client } from 'boardgame.io/react';
 
