@@ -1,5 +1,6 @@
 import React from 'react';
 class TicTacToeBoard extends React.Component{
+
     onClick(id){
         if(this.isActive(id)){
             this.props.moves.clickCell(id);
@@ -11,6 +12,7 @@ class TicTacToeBoard extends React.Component{
         if(this.props.G.cells[id]!==null) return false;
         return true;
     }
+    
     render(){
         let winner = '';
         if (this.props.ctx.gameover){

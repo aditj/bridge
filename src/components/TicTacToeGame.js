@@ -1,5 +1,7 @@
 function IsVictory(cells) {
+    
     // Winning Positions
+
     const positions = [
       [0, 1, 2],
       [3, 4, 5],
@@ -33,6 +35,8 @@ export const TicTacToe= {
     clickCell: (G,ctx,id) => {
       G.cells[id]=ctx.currentPlayer;
     },
+    
+
   },
   turn: { moveLimit: 1 },
 
@@ -45,4 +49,6 @@ export const TicTacToe= {
     }
 
   },
+
+
 };

@@ -7,9 +7,9 @@ import { SocketIO } from "boardgame.io/multiplayer";
 import './App.css';
 import { Client } from 'boardgame.io/react';
 // import { Local } from 'boardgame.io/multiplayer';
-const PORT = process.env.PORT || 8800;
+// const PORT = process.env.PORT || 8800;
 
-const server = 'http://localhost:'+PORT;
+// const server = 'http://localhost:'+PORT;
 const TicTacToeClient = Client({
   game: TicTacToe,
   board: TicTacToeBoard,
