@@ -1,3 +1,4 @@
+
 function IsVictory(cells) {
     
     // Winning Positions
@@ -22,15 +23,21 @@ function IsVictory(cells) {
   // Checking all winning positions 
     return positions.map(isRowComplete).some(i => i === true);
   }
-  
+
 function IsDraw(cells){
   return cells.filter(c=> c===null).length===0;
 }
 
-export const TicTacToe= {
 
-    name: "tic-tac-toe",
-  setup: ()=> ({ cells: Array(9).fill(null)}),
+export const TicTacToe= setupData =>  ({
+
+  name: "tic-tac-toe",
+  setup: (ctx)=> ({
+    
+    m:setupData.m,
+    n:setupData.n,
+    
+    cells: Array(setupData.m * setupData.n).fill(null)}),
   moves: {
     clickCell: (G,ctx,id) => {
       G.cells[id]=ctx.currentPlayer;
@@ -51,4 +58,4 @@ export const TicTacToe= {
   },
 
 
-};
+});

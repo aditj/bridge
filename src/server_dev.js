@@ -2,5 +2,9 @@
 
 const Server = require('boardgame.io/server').Server;
 const TicTacToe = require('./components/TicTacToeGame').TicTacToe;
-const server = Server({ games: [TicTacToe] });
+var setupData={
+    m:4,
+    n:3,
+  }
+const server = Server({ games: [TicTacToe(setupData)] });
 server.run(8000);

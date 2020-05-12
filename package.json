@@ -8,10 +8,13 @@
     "@testing-library/user-event": "^7.1.2",
     "boardgame.io": "^0.39.10",
     "esm": "^3.2.25",
+    "express": "^4.17.1",
+    "jquery": "^3.5.1",
     "koa-mount": "^4.0.0",
     "koa-static": "^5.0.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
     "serve": "^11.3.0"
   },

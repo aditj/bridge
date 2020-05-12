@@ -32,10 +32,10 @@ class TicTacToeBoard extends React.Component{
         textAlign: 'center',
     };
      let tbody=[];
-     for (let i = 0; i < 3; i++) {
+     for (let i = 0; i < this.props.G.m; i++) {
         let cells = [];
-        for (let j = 0; j < 3; j++) {
-          const id = 3 * i + j;
+        for (let j = 0; j < this.props.G.n; j++) {
+          const id = this.props.G.n * i + j;
           cells.push(
             <td style={cellStyle} key={id} onClick={() => this.onClick(id)}>
               {this.props.G.cells[id]}
