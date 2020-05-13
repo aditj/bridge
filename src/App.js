@@ -21,8 +21,8 @@ const LobbyView = () => (
    
 
     <Lobby
-      gameServer={'http://' +window.location.hostname+':8000'}
-      lobbyServer={'http://'+window.location.hostname+':8000'}
+      gameServer={'http://' +window.location.hostname}
+      lobbyServer={'http://'+window.location.hostname}
       gameComponents={[{game:TicTacToe,board:TicTacToeBoard,}]}
     />
   </div>
