@@ -29,10 +29,10 @@ function IsDraw(cells){
 }
 
 
-export const TicTacToe= setupData =>  ({
+export const TicTacToe =  ({
 
   name: "tic-tac-toe",
-  setup: (ctx)=> ({
+  setup: (ctx,setupData)=> ({
     
     m:setupData.m,
     n:setupData.n,
