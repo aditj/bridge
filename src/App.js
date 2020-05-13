@@ -4,7 +4,7 @@ import  TicTacToeBoard   from './components/TicTacToeBoard.js';
 import  { TicTacToe }  from './components/TicTacToeGame.js';
 // import { SocketIO } from "boardgame.io/multiplayer";
 import axios from 'axios';
-import $ from 'jquery';
+//import $ from 'jquery';
 import './App.css';
 import { Lobby } from 'boardgame.io/react';
 // import { Local } from 'boardgame.io/multiplayer';
@@ -17,12 +17,12 @@ import { Lobby } from 'boardgame.io/react';
 //   multiplayer: SocketIO({server: 'http://localhost:8000'}),
 // });
 const LobbyView = () => (
-  <div style={{ padding: 50 }}>
-    <h1>Lobby</h1>
+  <div style={{ }}>
+   
 
     <Lobby
-      gameServer={'https://' +window.location.hostname}
-      lobbyServer={'https://'+window.location.hostname}
+      gameServer={'http://' +window.location.hostname+':8000'}
+      lobbyServer={'http://'+window.location.hostname+':8000'}
       gameComponents={[{game:TicTacToe,board:TicTacToeBoard,}]}
     />
   </div>
@@ -31,18 +31,21 @@ const LobbyView = () => (
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {n:3,m:3 };
+    this.state = {n:3,m:3,numPlayers:2 };
     
     this.handleClick = this.handleClick.bind(this);
+    this.updateM = this.updateM.bind(this);
+    this.updateN = this.updateN.bind(this);
+    this.updatePlayers  = this.updatePlayers.bind(this);
   } 
   handleClick(e){
     e.preventDefault();
    
     axios({
       method: 'post',
-      url: '/games/tic-tac-toe/create',
+      url: 'http://localhost:8000/games/tic-tac-toe/create',
       data: {
-        numPlayers:2,
+        numPlayers:this.state.numPlayers,
         setupData:{
           m:this.state.m,
           n:this.state.n,
@@ -50,31 +53,62 @@ class App extends React.Component {
       }
     })
   }
-  
+  updateM(event){
+    this.setState({m:event.target.value});
+  }
+  updateN(event){
+    this.setState({n:event.target.value});
+  }
+  updatePlayers(event){
+    this.setState({numPlayers:event.target.value});
+  }
   render() {
     
       return (
        
-        <div>
+        <div className='container'>
+
+          <form > 
+            <div className='form-group'>
+          <label htmlFor='m'>Rows:</label>
            <input 
+           className='form-control'
                 type="number"
                 id='m'
                
-                 onChange={(event)=>this.setState({m:event.target.value})}
-                 ref={ref => this.m = ref}
+                 onChange={this.updateM}
+                 
               />
+              </div>
+              <div className='form-group'>
+              <label htmlFor='n'>Columns:</label>
               <input 
+              className='form-control'
                 type="number"
                 id='n'
               
-                onChange={(event)=>this.setState({n:event.target.value})}
+                onChange={this.updateN}
               />
-               <input 
+              </div>
+              <div className='form-group'>
+              <label htmlFor='players'>No. Of Players:</label>
+              <input 
+              className='form-control'
+                type="number"
+                id='players'
+                defaultValue='2'
+                onChange={this.updatePlayers}
+              />
+              </div>
+               <input
+              className='form-control btn btn-primary'
                 type="button"
                 
                 value="Create Tic Tac Toe Room"
                 onClick={this.handleClick}
               />
+              
+          </form>
 
  <LobbyView />
          
