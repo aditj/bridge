@@ -4,6 +4,7 @@ import  TicTacToeBoard   from './components/TicTacToeBoard.js';
 import  { TicTacToe }  from './components/TicTacToeGame.js';
 // import { SocketIO } from "boardgame.io/multiplayer";
 import axios from 'axios';
+import $ from 'jquery';
 import './App.css';
 import { Lobby } from 'boardgame.io/react';
 // import { Local } from 'boardgame.io/multiplayer';
@@ -20,8 +21,8 @@ const LobbyView = () => (
     <h1>Lobby</h1>
 
     <Lobby
-      gameServer={'https://${window.location.hostname}'}
-      lobbyServer={'https://${window.location.hostname}'}
+      gameServer={'https://' +window.location.hostname}
+      lobbyServer={'https://'+window.location.hostname}
       gameComponents={[{game:TicTacToe,board:TicTacToeBoard,}]}
     />
   </div>
