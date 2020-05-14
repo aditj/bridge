@@ -1,59 +1,64 @@
-import React from 'react';
-class TicTacToeBoard extends React.Component{
+import React from "react";
+import PropTypes from "prop-types";
+import "./board.css";
+export default class TicTacToeBoard extends React.Component {
+  static propTypes = {
+    G: PropTypes.any.isRequired,
+    ctx: PropTypes.any.isRequired,
+    moves: PropTypes.any.isRequired,
+    playerID: PropTypes.string,
+    isActive: PropTypes.bool,
+    isMultiplayer: PropTypes.bool
+  };
 
-    onClick(id){
-        if(this.isActive(id)){
-            this.props.moves.clickCell(id);
-            this.props.events.endTurn();
-        }
+  onClick = id => {
+    if (this.isActive(id)) {
+      this.props.moves.clickCell(id);
     }
-    isActive(id){
-        if(!this.props.isActive) return false;
-        if(this.props.G.cells[id]!==null) return false;
-        return true;
+  };
+
+  isActive(id) {
+    if (!this.props.isActive) return false;
+    if (this.props.G.cells[id] !== null) return false;
+    return true;
+  }
+
+  render() {
+    let tbody = [];
+    for (let i = 0; i < this.props.G.m; i++) {
+      let cells = [];
+      for (let j = 0; j < this.props.G.n; j++) {
+        const id = this.props.G.n * i + j;
+        cells.push(
+          <td
+            key={id}
+            className={this.isActive(id) ? "active" : ""}
+            onClick={() => this.onClick(id)}
+          >
+            {this.props.G.cells[id]}
+          </td>
+        );
+      }
+      tbody.push(<tr key={i}>{cells}</tr>);
     }
-    
-    render(){
-        let winner = '';
-        if (this.props.ctx.gameover){
-            winner =
+
+    let winner = null;
+    if (this.props.ctx.gameover) {
+      winner =
         this.props.ctx.gameover.winner !== undefined ? (
           <div id="winner">Winner: {this.props.ctx.gameover.winner}</div>
         ) : (
           <div id="winner">Draw!</div>
         );
-        }
-    
-    const cellStyle={
-        border: '1px solid #555',
-        width: '50px',
-        height: '50px',
-        lineHeight: '50px',
-        textAlign: 'center',
-    };
-     let tbody=[];
-     for (let i = 0; i < this.props.G.m; i++) {
-        let cells = [];
-        for (let j = 0; j < this.props.G.n; j++) {
-          const id = this.props.G.n * i + j;
-          cells.push(
-            <td style={cellStyle} key={id} onClick={() => this.onClick(id)}>
-              {this.props.G.cells[id]}
-            </td>
-          );
-        }
-        tbody.push(<tr key={i}>{cells}</tr>);
-      }
-
-      return(
-        <div>
-          <table id="board">
-            <tbody>{tbody}</tbody>
-          </table>
-          {winner}
-        </div>
-      );
     }
 
+    return (
+      <div>
+        <table id="board">
+          <tbody>{tbody}</tbody>
+        </table>
+        {winner}
+      </div>
+    );
+  }
 }
-export default TicTacToeBoard;

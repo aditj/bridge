@@ -1,7 +1,7 @@
 // Server for development
 
-const Server = require('boardgame.io/server').Server;
-const TicTacToe = require('./components/TicTacToeGame').TicTacToe;
+import { Server } from 'boardgame.io/server';
+import { TicTacToe } from './components/TicTacToeGame';
 
 const server = Server({ games: [TicTacToe] });
 server.run(8000);

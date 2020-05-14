@@ -16,34 +16,19 @@ import { Lobby } from 'boardgame.io/react';
 //   board: TicTacToeBoard,
 //   multiplayer: SocketIO({server: 'http://localhost:8000'}),
 // });
-const LobbyView = () => (
-  <div style={{ }}>
-   
-
-    <Lobby
-      gameServer={'http://' +window.location.hostname}
-      lobbyServer={'http://'+window.location.hostname}
-      gameComponents={[{game:TicTacToe,board:TicTacToeBoard,}]}
-    />
-  </div>
-);
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {n:3,m:3,numPlayers:2 };
-    
-    this.handleClick = this.handleClick.bind(this);
-    this.updateM = this.updateM.bind(this);
-    this.updateN = this.updateN.bind(this);
-    this.updatePlayers  = this.updatePlayers.bind(this);
-  } 
-  handleClick(e){
+  }
+  
+  handleClick=(e)=>{
     e.preventDefault();
    
     axios({
       method: 'post',
-      url: 'http://localhost:8000/games/tic-tac-toe/create',
+      url: '/games/tic-tac-toe/create',
       data: {
         numPlayers:this.state.numPlayers,
         setupData:{
@@ -51,15 +36,16 @@ class App extends React.Component {
           n:this.state.n,
         }
       }
-    })
+    });
   }
-  updateM(event){
+  
+  updateM=(event)=>{
     this.setState({m:event.target.value});
   }
-  updateN(event){
+  updateN=(event)=>{
     this.setState({n:event.target.value});
   }
-  updatePlayers(event){
+  updatePlayers=(event)=>{
     this.setState({numPlayers:event.target.value});
   }
   render() {
@@ -75,7 +61,7 @@ class App extends React.Component {
            className='form-control'
                 type="number"
                 id='m'
-               
+                defaultValue='3'
                  onChange={this.updateM}
                  
               />
@@ -86,7 +72,7 @@ class App extends React.Component {
               className='form-control'
                 type="number"
                 id='n'
-              
+                defaultValue='3'
                 onChange={this.updateN}
               />
               </div>
@@ -110,9 +96,12 @@ class App extends React.Component {
               
           </form>
 
- <LobbyView />
+          <Lobby
+      gameServer={'http://' +window.location.hostname}
+      lobbyServer={'http://'+window.location.hostname}
+      gameComponents={[{game:TicTacToe,board:TicTacToeBoard,}]} 
+    />
          
-
         </div>
       );
           
