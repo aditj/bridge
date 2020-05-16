@@ -16,7 +16,7 @@ function IsVictory(cells,m,n) {
   i = Math.min(m, n);
 
   positions.push([...Array(i).keys()].map(x => x * (i + 1)));
-
+  positions.push([...Array(i).keys()].map(x=>4+(4*x)));
   // Function to see if a particular row is complete
   const isRowComplete = row => {
     // Mapping winning position to actual cells
