@@ -97,8 +97,8 @@ class App extends React.Component {
           </form>
 
           <Lobby
-      gameServer={'http://' +window.location.hostname}
-      lobbyServer={'http://'+window.location.hostname}
+      gameServer={'https://' +window.location.hostname}
+      lobbyServer={'https://'+window.location.hostname}
       gameComponents={[{game:TicTacToe,board:TicTacToeBoard,}]} 
     />
          

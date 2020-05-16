@@ -44,7 +44,7 @@ export const TicTacToe = {
       }
     }
   },
-
+  
   turn: { moveLimit: 1 },
 
   endIf: (G, ctx) => {
