@@ -6,7 +6,7 @@ import mount from 'koa-mount';
 import { TicTacToe } from './components/TicTacToeGame';
 
 const server = Server({ games: [TicTacToe] });
-const PORT = process.env.PORT || 8800;
+const PORT = process.env.PORT || 8000;
 
 // Build path relative to the server.js file
 const frontEndAppBuildPath = path.resolve(__dirname, '../build');

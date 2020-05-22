@@ -51,6 +51,7 @@ export const TicTacToe = {
     if (IsVictory(G.cells,G.m,G.n)) {
       return { winner: ctx.currentPlayer };
     }
+    // Draw Conditions
     if (G.cells.filter(c => c === null).length === 0) {
       return { draw: true };
     }
