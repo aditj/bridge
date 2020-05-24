@@ -1,7 +1,8 @@
+// Function to see if Victory condition is reached
 function IsVictory(cells,m,n) {
-  
+  // Array to contain all possible victory condition
   var positions = [];
-
+  // Horizontal
   for (var i = 0; i < m; i++) {
     // eslint-disable-next-line no-loop-func
     positions.push([...Array(n).keys()].map(x => n * i + x));
@@ -27,7 +28,7 @@ function IsVictory(cells,m,n) {
   // Checking all winning positions
   return positions.map(isRowComplete).some(i => i === true);
 }
-
+// Game Constant to be passed into boardgames.io Lobby/Client/Server
 export const TicTacToe = {
   name: "tic-tac-toe",
 

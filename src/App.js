@@ -1,31 +1,21 @@
 import React from 'react';
-//import logo from './logo.svg';
 import TicTacToeBoard from './components/TicTacToeBoard.js';
 import { TicTacToe } from './components/TicTacToeGame.js';
-// import { SocketIO } from "boardgame.io/multiplayer";
 import axios from 'axios';
-//import $ from 'jquery';
 import './App.css';
 import { Lobby } from 'boardgame.io/react';
-// import { Local } from 'boardgame.io/multiplayer';
-// const PORT = process.env.PORT || 8800;
-
-// const server = 'http://localhost:'+PORT;
-// const TicTacToeClient = Client({
-//   game: TicTacToe,
-//   board: TicTacToeBoard,
-//   multiplayer: SocketIO({server: 'http://localhost:8000'}),
-// });
-
+// Main app react component
 class App extends React.Component {
+  // constructor 
   constructor(props) {
     super(props);
     this.state = { n: 3, m: 3, numPlayers: 2 };
   }
-
+  // Handle create button click
   handleClick = (e) => {
+    // prevent page reload
     e.preventDefault();
-
+    // AJAX request to create a room
     axios({
       method: 'post',
       url: '/games/tic-tac-toe/create',
@@ -38,7 +28,7 @@ class App extends React.Component {
       }
     });
   }
-
+  // Functions to handle change of input variables
   updateM = (event) => {
     this.setState({ m: event.target.value });
   }
@@ -48,12 +38,13 @@ class App extends React.Component {
   updatePlayers = (event) => {
     this.setState({ numPlayers: event.target.value });
   }
+  // Render the content
   render() {
 
     return (
-
+      // Bootstrap container css class
       <div className='container'>
-
+        {/* form to create room */}
         <form >
           <div className='form-group'>
             <label htmlFor='m'>Rows:</label>
@@ -95,7 +86,7 @@ class App extends React.Component {
           />
 
         </form>
-
+        {/* Lobby component from boardgames.io  */}
         <Lobby
           gameServer={'https://' + window.location.hostname}
           lobbyServer={'https://' + window.location.hostname}
