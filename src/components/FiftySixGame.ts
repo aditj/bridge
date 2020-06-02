@@ -7,14 +7,16 @@ var cards:string[]= [].concat(...['A','9','K','Q','J','9'].map(d => ['S','C','D'
 export const FiftySixGame = {
     name:'56',
     // can include setupData while creating a custom implementation of 56 game
-    setup: (ctx:any,setupData:any):any=> {
+    setup: (ctx:any,setupData:any):any => (
         
-       return ( 
-           pts:[0,0],
+        { pts:[0,0],
            startPlayer:0,
-           )
-    },
-    moves: 
+        }
+    )
+    ,
+    moves: {
+
+    }
 
 
 
