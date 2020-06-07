@@ -1,9 +1,21 @@
 import React from 'react';
+// eslint-disable-next-line
 import TicTacToeBoard from './components/TicTacToeBoard.js';
+// eslint-disable-next-line
 import { TicTacToe } from './components/TicTacToeGame.js';
 import axios from 'axios';
 import './App.css';
+// eslint-disable-next-line
 import { Lobby } from 'boardgame.io/react';
+import { Local } from 'boardgame.io/multiplayer';
+import  {Client}  from 'boardgame.io/react';
+import { FiftySixGame } from './components/FiftySixGame.js'
+import  FiftySixBoard  from './components/FiftySixBoard.js'
+const FiftySix = Client({
+  game: FiftySixGame,
+  board: FiftySixBoard,
+  multiplayer: Local(),
+});
 // Main app react component
 class App extends React.Component {
   // constructor 
@@ -42,10 +54,13 @@ class App extends React.Component {
   render() {
 
     return (
-      // Bootstrap container css class
+      // Commented Form and lobby out
+      <div>
+      {/* // Bootstrap container css class */}
+      
       <div className='container'>
         {/* form to create room */}
-        <form >
+        {/* <form >
           <div className='form-group'>
             <label htmlFor='m'>Rows:</label>
             <input
@@ -85,15 +100,23 @@ class App extends React.Component {
             onClick={this.handleClick}
           />
 
-        </form>
+        </form> */}
         {/* Lobby component from boardgames.io  */}
-        <Lobby
+        {/* <Lobby
           gameServer={'https://' + window.location.hostname}
           lobbyServer={'https://' + window.location.hostname}
           gameComponents={[{ game: TicTacToe, board: TicTacToeBoard, }]}
-        />
-
+        /> */}
       </div>
+      <table>
+              <FiftySix playerID="0"/>
+              <FiftySix playerID="1"/>
+              <FiftySix playerID="2"/>
+              <FiftySix playerID="3"/>
+              <FiftySix playerID="4"/>
+              <FiftySix playerID="5"/>
+       </table>
+              </div>
     );
 
 
