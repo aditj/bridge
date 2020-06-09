@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import "./board.css";
+import "../board.css";
 // React component of TicTacToeBoard
 export default class TicTacToeBoard extends React.Component {
   // type checking

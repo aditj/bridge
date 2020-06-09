@@ -4,7 +4,7 @@ import path from 'path';
 import Koa from 'koa';
 import serve from 'koa-static';
 import mount from 'koa-mount';
-import { TicTacToe } from './components/TicTacToeGame';
+import { TicTacToe } from './games/TicTacToe/TicTacToeGame';
 // Server from boardgames.io
 const server = Server({ games: [TicTacToe] });
 const PORT = process.env.PORT || 8000;

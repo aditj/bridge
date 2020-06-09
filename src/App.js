@@ -1,16 +1,16 @@
 import React from 'react';
 // eslint-disable-next-line
-import TicTacToeBoard from './components/TicTacToeBoard.js';
+import TicTacToeBoard from './games/TicTacToe/TicTacToeBoard.js';
 // eslint-disable-next-line
-import { TicTacToe } from './components/TicTacToeGame.js';
+import { TicTacToe } from './games/TicTacToe/TicTacToeGame.js';
 import axios from 'axios';
 import './App.css';
 // eslint-disable-next-line
 import { Lobby } from 'boardgame.io/react';
 import { Local } from 'boardgame.io/multiplayer';
 import  {Client}  from 'boardgame.io/react';
-import { FiftySixGame } from './components/FiftySixGame.js'
-import  FiftySixBoard  from './components/FiftySixBoard.js'
+import { FiftySixGame } from './games/FiftySix/FiftySixGame.js'
+import  FiftySixBoard  from './games/FiftySix/FiftySixBoard.js'
 const FiftySix = Client({
   game: FiftySixGame,
   board: FiftySixBoard,

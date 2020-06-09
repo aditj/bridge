@@ -1,4 +1,6 @@
 import React,{ Component } from "react";
+import "../board.css";
+
 export default class FiftySixBoard extends Component {
     render(){
         let cards=[];

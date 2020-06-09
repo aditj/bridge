@@ -3,27 +3,14 @@
 // Reasons for this is to increase readability and to better define types
 // which will be helpful in debugging
 import { PlayerView } from 'boardgame.io/core';
-function shuffle(array) {
-    var currentIndex = array.length, temporaryValue, randomIndex;
-    // While there remain elements to shuffle...
-    while (0 !== currentIndex) {
-        // Pick a remaining element...
-        randomIndex = Math.floor(Math.random() * currentIndex);
-        currentIndex -= 1;
-        // And swap it with the current element.
-        temporaryValue = array[currentIndex];
-        array[currentIndex] = array[randomIndex];
-        array[randomIndex] = temporaryValue;
-    }
-    return array;
-}
-var cards = [].concat(...['A', '9', 'K', 'Q', 'J', '9'].map(d => ['♠', '♣️', '♦️', '♥️'].map(e => "".concat(d, e))));
-cards = new Array(2).fill(cards).flat();
+import { new_deck }  from './modules.js';
+
+
 export const FiftySixGame = {
     name: '56',
     // can include setupData while creating a custom implementation of 56 game
     setup: (ctx, setupData) => {
-        const deck = shuffle(cards);
+        const deck = new_deck();
         var start = { pts: [0, 0],
             startPlayer: 0, players: {
                 0: { cards: [], team: 0 },
