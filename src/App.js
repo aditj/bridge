@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React from 'react';
 // eslint-disable-next-line
 import TicTacToeBoard from './games/TicTacToe/TicTacToeBoard.js';
@@ -7,14 +8,21 @@ import axios from 'axios';
 import './App.css';
 // eslint-disable-next-line
 import { Lobby } from 'boardgame.io/react';
+import logger from 'redux-logger';
+import { applyMiddleware, compose } from 'redux';
 import { Local } from 'boardgame.io/multiplayer';
 import  {Client}  from 'boardgame.io/react';
 import { FiftySixGame } from './games/FiftySix/FiftySixGame.js'
 import  FiftySixBoard  from './games/FiftySix/FiftySixBoard.js'
 const FiftySix = Client({
   game: FiftySixGame,
+  numPlayers:6,
   board: FiftySixBoard,
   multiplayer: Local(),
+  debug:false,
+  enhancer: compose(
+    (window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
+  ),
 });
 // Main app react component
 class App extends React.Component {
@@ -108,14 +116,12 @@ class App extends React.Component {
           gameComponents={[{ game: TicTacToe, board: TicTacToeBoard, }]}
         /> */}
       </div>
-      <table>
               <FiftySix playerID="0"/>
-              <FiftySix playerID="1"/>
+               <FiftySix playerID="1"/>
               <FiftySix playerID="2"/>
               <FiftySix playerID="3"/>
               <FiftySix playerID="4"/>
-              <FiftySix playerID="5"/>
-       </table>
+              <FiftySix playerID="5"/> 
               </div>
     );
 

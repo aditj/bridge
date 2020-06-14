@@ -1,0 +1,45 @@
+.card{
+    width:40px;
+    height:80px;
+    border: black 1px solid;
+    border-radius: 5%;
+}
+.cards .card:hover{
+    background-color: green;
+    color:white;
+}
+.cards{
+    display:inline-flex;
+}
+.current-cards{
+    width: 200px;
+    height:200px;
+    border-radius: 50%;
+}
+.current-cards .card{
+    position: absolute;
+    left: 50%;
+  top: 50%;
+  margin-left: -5px;
+  margin-top: -5px;
+}
+.current-cards .card:nth-child(1){
+    transform: rotate(0deg) translate(100px);
+}
+.current-cards .card:nth-child(2){
+    transform: rotate(60deg) translate(100px);
+}
+.current-cards .card:nth-child(3){
+    transform: rotate(120deg) translate(100px);
+}
+.current-cards .card:nth-child(4){
+    transform: rotate(180deg) translate(100px);
+}
+.current-cards .card:nth-child(5){
+    transform: rotate(240deg) translate(100px);
+}
+.current-cards .card:nth-child(6){
+    transform: rotate(300deg) translate(100px);
+}
+
+
