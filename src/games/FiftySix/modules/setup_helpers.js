@@ -18,8 +18,7 @@ export function new_deck(){
     // Making a combinatorial matching of Numbers and Houses 
     var cards = [].concat(...['A', '9', 'K', 'Q', 'J', '9'].map(d => ['♠', '♣️', '♦️', '♥️'].map(e => "".concat(d, e))));
     // Combine two decks for 56
-        cards = new Array(2).fill(cards).flat();
+    cards = [].concat(...new Array(2).fill(cards));
     // Return Shuffled Cards
     return shuffle(cards);
-
 }

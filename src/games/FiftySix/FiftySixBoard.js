@@ -7,7 +7,7 @@ export default class FiftySixBoard extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            bid: 0,
+            bid: 28,
             trump:'N',
         }
     }
@@ -33,7 +33,7 @@ export default class FiftySixBoard extends Component {
             <div>
             
             <label>Bid Amount</label>
-            <input name='bid' type='number' onChange={(e)=>this.setState({bid:e.target.value})}></input>
+            <input defaultValue='28' name='bid' type='number' onChange={(e)=>this.setState({bid:e.target.value})}></input>
             <label>Trump</label>
             <select  onChange={(e)=>this.setState({trump:e.target.value})} >
                 <option value='N' defaultChecked='True'>No Trump</option>

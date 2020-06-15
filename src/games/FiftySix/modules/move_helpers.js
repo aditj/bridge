@@ -17,7 +17,8 @@ function CalculatePoints(array) {
 // TODO Check for ruffing
 function DecideWinner(G){
     var trump=G.trump;
-    
+    // eslint-disable-next-line no-unused-vars
+    var first_player_house=G.currentCards[0][1][1]
     var map={
         'J':5,
         '9':4,
@@ -74,15 +75,17 @@ function DecideWinner(G){
 // function to execute after each turn
 
 export function EndPlayTurn(G,ctx){
-    if(G.players.length===6){
         
     
     var winner=DecideWinner(G)[0];
     var points=CalculatePoints(G.currentCards);
+    console.log(G.players);
+
     G.points[G.players[winner].team]+=points;
-    G.currentCards=[]
+    G.currentCards=[];
+    console.log(winner);
     ctx.events.endTurn({ next: winner });
-    }
+    
     
 
 }

@@ -10,7 +10,7 @@ import './App.css';
 import { Lobby } from 'boardgame.io/react';
 import logger from 'redux-logger';
 import { applyMiddleware, compose } from 'redux';
-import { Local } from 'boardgame.io/multiplayer';
+import { SocketIO, Local } from 'boardgame.io/multiplayer';
 import  {Client}  from 'boardgame.io/react';
 import { FiftySixGame } from './games/FiftySix/FiftySixGame.js'
 import  FiftySixBoard  from './games/FiftySix/FiftySixBoard.js'

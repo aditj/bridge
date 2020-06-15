@@ -41,16 +41,16 @@ export const FiftySixGame = {
         bid:{
             moves:{Bid},
             endIf: G=> CheckEndBidding(G), // Change Name
-            onEnd: (G,ctx)=>EndBidding(G),
+            onEnd:(G,ctx)=>EndBidding(G,ctx),
             next:'play',
             start: true,
 
         },
         play:{
             moves:{PlayCard},
-            //endIf: G=> EndPlayTurnCheck(G),
+           // endIf: G=> EndPlayTurnCheck(G),
             next:'play',
-            //onEnd:(G,ctx)=>EndPlayTurn(G),
+           // onEnd:(G,ctx)=>EndPlayTurn(G),
             
 
         }
@@ -60,5 +60,14 @@ export const FiftySixGame = {
     order: TurnOrder.RESET,
     },
     playerView: PlayerView.STRIP_SECRETS,
-    moves: {Bid: {move: (G,ctx,bid,trump)=>Bid,client:false},PlayCard: {move: (G,ctx,cardId)=> PlayCard,client:false} },
+    moves: {
+        Bid: {
+            move: (G,ctx,bid,trump)=>Bid,
+            client:false,
+            },
+        PlayCard: {
+            move: (G,ctx,cardId)=> PlayCard,
+            client:false,
+        } 
+    },
 };
