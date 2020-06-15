@@ -24,10 +24,14 @@ export default class FiftySixBoard extends Component {
         }
         let currentCards=[];
         for(let j=0;j<6;j++){
-            currentCards[j]=<div className='card' id={j} key={j}></div>;
+            currentCards.push(<div className='card' id={j} key={j}></div>);
         }
         for(let j=0;j<(this.props.G.currentCards.length|0);j++){
             currentCards[j]=<div className='card' id={j} key={j}>{this.props.G.currentCards[j][1]}</div>;
+        }
+        let currentBids=[];
+        for(let k=0;k<(this.props.G.bids.length|0);k++){
+        currentBids.push(<div className='bid'>{this.props.G.bids[k]}</div>)
         }
         return(
             <div>
@@ -47,7 +51,10 @@ export default class FiftySixBoard extends Component {
             <br></br>
             <div className='cards'>{ cards }</div>
             <br></br>
-            
+            <div className='bid-board'> 
+            Current Bids:
+                {currentBids}
+            </div>
             <div className='current-cards'>{ currentCards }</div>
 
                 </div>
