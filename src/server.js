@@ -5,8 +5,9 @@ import Koa from 'koa';
 import serve from 'koa-static';
 import mount from 'koa-mount';
 import { TicTacToe } from './games/TicTacToe/TicTacToeGame';
+import { FiftySixGame } from './games/FiftySix/FiftySixGame';
 // Server from boardgames.io
-const server = Server({ games: [TicTacToe] });
+const server = Server({ games: [TicTacToe,FiftySixGame] });
 const PORT = process.env.PORT || 8000;
 
 // Build path relative to the server.js file

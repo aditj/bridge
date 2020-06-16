@@ -29,7 +29,7 @@ class App extends React.Component {
   // constructor 
   constructor(props) {
     super(props);
-    this.state = { n: 3, m: 3, numPlayers: 2 };
+    this.state = { n: 3, m: 3, numPlayers: 2 ,devState:null};
   }
   // Handle create button click
   handleClick = (e) => {
@@ -60,7 +60,19 @@ class App extends React.Component {
   }
   // Render the content
   render() {
-
+    if (this.state.devState === null) {
+      return (
+        <div>
+          <p>Play as</p>
+          <button onClick={() => this.setState({ devState: "dev" })}>
+            Dev 56
+          </button>
+          <button onClick={() => this.setState({ devState: "play" })}>
+            Play
+          </button>
+        </div>
+      );
+    } else if (this.state.devState === 'play'){
     return (
       // Commented Form and lobby out
       <div>
@@ -110,12 +122,20 @@ class App extends React.Component {
 
         </form> */}
         {/* Lobby component from boardgames.io  */}
-        {/* <Lobby
+     
+          <div>
+        <Lobby
           gameServer={'https://' + window.location.hostname}
           lobbyServer={'https://' + window.location.hostname}
-          gameComponents={[{ game: TicTacToe, board: TicTacToeBoard, }]}
-        /> */}
-      </div>
+          gameComponents={[{ game: TicTacToe, board: TicTacToeBoard, },{ game: FiftySixGame, board: FiftySixBoard, }]}
+        />
+        </div>
+        </div>
+        </div>);
+
+        } else {
+        return (
+              <div>
               <FiftySix playerID="0"/>
                <FiftySix playerID="1"/>
               <FiftySix playerID="2"/>
@@ -124,7 +144,7 @@ class App extends React.Component {
               <FiftySix playerID="5"/> 
               </div>
     );
-
+        }
 
   }
 }

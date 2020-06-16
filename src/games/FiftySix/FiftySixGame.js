@@ -2,7 +2,7 @@
 import { PlayerView, TurnOrder } from 'boardgame.io/core';
 import { new_deck } from './modules/setup_helpers.js';
 import { Bid, PlayCard } from './modules/moves.js'
-import { EndBidding, CheckEndBidding } from './modules/phase_helpers';
+import { EndBidding, CheckEndBidding,EndPlay } from './modules/phase_helpers';
 
 export const FiftySixGame = {
     name: '56',
@@ -52,8 +52,8 @@ export const FiftySixGame = {
 
         play: {
             moves: { PlayCard },
-            next: 'play',
-            
+            next: 'bid',
+            endIf:(G,ctx)=>EndPlay,
             turn: {
                 moveLimit:1,
                 order: {
@@ -72,7 +72,8 @@ export const FiftySixGame = {
         order: TurnOrder.RESET,
     },
     playerView: PlayerView.STRIP_SECRETS,
-
+    minPlayers:6,
+    maxPlayers:6,
     moves: {
         Bid,
         PlayCard,
