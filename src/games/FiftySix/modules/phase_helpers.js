@@ -23,18 +23,6 @@ export function EndBidding(G,ctx){
 }
 
 
-
-
-// Function to check whether to end the minified game 
-export function EndPlay(G){
-    for(var i=0;i<6;i++){
-        if(G.players[i].cards.length!==0){
-            return false;
-        }
-    }
-    
-    return true;
-}
 // Function to check whether to  end bidding
 export function CheckEndBidding(G,ctx){
     for(var i=0;i<6;i++){
@@ -46,4 +34,15 @@ export function CheckEndBidding(G,ctx){
     
     return true;
     
+}
+// Function to check whether to end the minified game 
+// TODO Add declaration of winner 
+export function EndPlay(G){
+    for(var i=0;i<6;i++){
+        if(G.players[i].cards.length!==0){
+            return false;
+        }
+    }
+    
+    return true;
 }

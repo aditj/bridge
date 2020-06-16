@@ -15,6 +15,7 @@ export default class FiftySixBoard extends Component {
         this.props.moves.PlayCard(cardId);
     }
     Bid() {
+        //TODO Add limits of a bid i.e. 28-56 
         this.props.moves.Bid(this.state.bid, this.state.trump);
     }
     render() {
@@ -35,7 +36,7 @@ export default class FiftySixBoard extends Component {
         }
         return (
             <div>
-                Player ID: {this.props.playerID}
+                Player ID: {this.props.playerID} , Team: {this.props.G.players[this.props.playerID]['team']}
                 <br></br>
                 <div>
                 <label>Bid Amount</label>
@@ -63,6 +64,10 @@ export default class FiftySixBoard extends Component {
             <br></br>
                     {this.props.ctx.currentPlayer}
                     <br></br>
+                    Points:
+                    <br></br>
+                    Team 0:{this.props.G.points[0]}<br></br>
+                    Team 1:{this.props.G.points[1]}<br></br>
             Trump: <br></br>
                     {this.props.G.trump}
                     <br></br>
