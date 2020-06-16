@@ -9,7 +9,11 @@ export default class FiftySixBoard extends Component {
         this.state = {
             bid: 28,
             trump: 'N',
+            message:'',
         }
+    }
+    Message() {
+        this.props.moves.Message(this.state.message,this.props.playerID)
     }
     PlayCard(cardId) {
         this.props.moves.PlayCard(cardId);
@@ -33,6 +37,10 @@ export default class FiftySixBoard extends Component {
         let currentBids = [];
         for (let k = 0; k < (this.props.G.bids.length | 0); k++) {
             currentBids.push(<div className='bid'>{this.props.G.bids[k]}</div>)
+        }
+        let messages = [];
+        for (let k = 0; k < (this.props.G.messages.length | 0); k++) {
+            messages.push(<div className='message'>{this.props.G.messages[k][1]}: {this.props.G.messages[k][0]}</div>)
         }
         return (
             <div>
@@ -58,7 +66,16 @@ export default class FiftySixBoard extends Component {
                 
                     {cards}
                 </div>
+                <div className='chat-box'>
+                <div className='messages'>
+                    {messages}
+                </div>
+                <div>
+                    <input type='text' onChange={e=>{this.setState({message:e.target.value})}}></input>
+                    <button onClick={() => this.Message()}>Message</button>
 
+                </div>
+                </div>
                 <div className='bid-board'>
                     Current Player:
             <br></br>
@@ -80,8 +97,9 @@ export default class FiftySixBoard extends Component {
                 <div className='current-cards'>
                     {currentCards}
                 </div>
+                
                 </div>
-
+                
             </div>
         );
     }

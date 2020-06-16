@@ -1,7 +1,7 @@
 
 import { PlayerView, TurnOrder } from 'boardgame.io/core';
 import { new_deck } from './modules/setup_helpers.js';
-import { Bid, PlayCard } from './modules/moves.js'
+import { Bid, PlayCard,Message } from './modules/moves.js'
 import { EndBidding, CheckEndBidding,EndPlay } from './modules/phase_helpers';
 
 export const FiftySixGame = {
@@ -22,7 +22,7 @@ export const FiftySixGame = {
                 4: { cards: [], team: 0, numTurns: 8, },
                 5: { cards: [], team: 1, numTurns: 8, },
             },
-
+            messages:[],
             deck: new_deck(),
             trump: 'T',
             bids: Array(6).fill([0, 'T']),
@@ -41,7 +41,7 @@ export const FiftySixGame = {
     },
     phases: {
         bid: {
-            moves: { Bid },
+            moves: { Bid ,Message},
             endIf: (G, ctx) => CheckEndBidding(G, ctx), // Change Name
             onEnd: (G, ctx) => EndBidding(G, ctx),
             next: 'play',
@@ -51,7 +51,7 @@ export const FiftySixGame = {
         },
 
         play: {
-            moves: { PlayCard },
+            moves: { PlayCard,Message },
             next: 'bid',
             endIf:(G,ctx)=>EndPlay,
             turn: {
@@ -77,5 +77,6 @@ export const FiftySixGame = {
     moves: {
         Bid,
         PlayCard,
+        Message,
     }
 };

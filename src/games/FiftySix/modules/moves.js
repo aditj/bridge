@@ -29,3 +29,10 @@ export const Bid={
     },
     client:false,
 };
+export const Message={
+    move:(G,ctx,message,ID)=>{
+        G.messages.push([message,ID]);
+
+    },
+    client:false,
+};
