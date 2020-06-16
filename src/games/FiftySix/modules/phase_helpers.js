@@ -18,8 +18,10 @@ export function EndBidding(G,ctx){
     // TODO  Add tracking of bets
     // TODO Add changing the next players
     G.trump=max[1];
+    G.playerNext=player;
 
 }
+
 
 
 
@@ -41,6 +43,7 @@ export function CheckEndBidding(G,ctx){
             return false;
         }
     }
+    
     return true;
     
 }

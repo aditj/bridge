@@ -47,4 +47,22 @@
     position: absolute;
     left: 80%;
   top: 50%;
+  border:1px black solid;
+  border-radius: 5%;
+}
+.card-table{
+    left: 50%;
+    top: 50%;
+    position: absolute;
+    border:1px black solid;
+    width: 400px;
+    height:400px;
+    border-radius: 20%;
+}
+#card-table-label{
+    position: relative;
+    left: 40%;
+  top: 0%;
+  font-size: xx-large;
+ 
 }
