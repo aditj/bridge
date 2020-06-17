@@ -20,6 +20,7 @@ export default class FiftySixBoard extends Component {
     }
     Bid() {
         //TODO Add limits of a bid i.e. 28-56 
+        // TODO Add Pass 
         this.props.moves.Bid(this.state.bid, this.state.trump);
     }
     render() {

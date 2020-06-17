@@ -124,8 +124,8 @@ class App extends React.Component {
 
             <div>
               <Lobby
-                gameServer={'http://' + window.location.hostname+':8000'}
-                lobbyServer={'http://' + window.location.hostname+':8000'}
+                gameServer={'https://' + window.location.hostname}
+                lobbyServer={'https://' + window.location.hostname}
                 gameComponents={[{ game: TicTacToe, board: TicTacToeBoard }, { game: FiftySixGame, board: FiftySixBoard}]}
               />
             </div>
