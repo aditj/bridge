@@ -24,6 +24,13 @@ const FiftySix = Client({
     (window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
   ),
 });
+
+const server = `https://${window.location.hostname}`;
+const importedGames=[
+  {game:TicTacToe,board:TicTacToeBoard},
+  {game:FiftySixBoard,board:FiftySixGame}
+]
+
 // Main app react component
 class App extends React.Component {
   // constructor 
@@ -61,7 +68,7 @@ class App extends React.Component {
   // Render the content
   render() {
     if (this.state.devState === null) {
-      return (
+      return(
         <div>
           <p>Play as</p>
           <button onClick={() => this.setState({ devState: "dev" })}>
@@ -73,8 +80,7 @@ class App extends React.Component {
         </div>
       );
     } else if (this.state.devState === 'play') {
-      return (
-        // Commented Form and lobby out
+      return(
         <div>
           {/* // Bootstrap container css class */}
           <div className='container'>
@@ -123,17 +129,14 @@ class App extends React.Component {
             {/* Lobby component from boardgames.io  */}
 
             <div>
-              <Lobby
-                gameServer={'https://' + window.location.hostname}
-                lobbyServer={'https://' + window.location.hostname}
-                gameComponents={[{ game: TicTacToe, board: TicTacToeBoard }, { game: FiftySixGame, board: FiftySixBoard}]}
-              />
+              <Lobby gameServer={server} lobbyServer={server} gameComponents={ importedGames } />
             </div>
           </div>
-        </div>);
+        </div>
+        );
 
     } else {
-      return (
+      return(
         <div>
           <FiftySix playerID="0" />
           <FiftySix playerID="1" />
