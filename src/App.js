@@ -28,7 +28,7 @@ const FiftySix = Client({
 const server = `https://${window.location.hostname}`;
 const importedGames=[
   {game:TicTacToe,board:TicTacToeBoard},
-  {game:FiftySixBoard,board:FiftySixGame}
+  {game:FiftySixGame,board:FiftySixBoard}
 ]
 
 // Main app react component
