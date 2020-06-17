@@ -91,7 +91,7 @@ export default class FiftySixBoard extends Component {
             Current Bids:
                 {currentBids}
                 </div>
-                <div class='card-table'>
+                <div className='card-table'>
                 <label id='card-table-label'>Card Table</label>
 
                 <div className='current-cards'>

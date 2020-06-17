@@ -11,15 +11,15 @@ import { Lobby } from 'boardgame.io/react';
 import logger from 'redux-logger';
 import { applyMiddleware, compose } from 'redux';
 import { SocketIO, Local } from 'boardgame.io/multiplayer';
-import  {Client}  from 'boardgame.io/react';
+import { Client } from 'boardgame.io/react';
 import { FiftySixGame } from './games/FiftySix/FiftySixGame.js'
-import  FiftySixBoard  from './games/FiftySix/FiftySixBoard.js'
+import FiftySixBoard from './games/FiftySix/FiftySixBoard.js'
 const FiftySix = Client({
   game: FiftySixGame,
-  numPlayers:6,
+  numPlayers: 6,
   board: FiftySixBoard,
   multiplayer: Local(),
-  debug:false,
+  debug: false,
   enhancer: compose(
     (window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
   ),
@@ -29,7 +29,7 @@ class App extends React.Component {
   // constructor 
   constructor(props) {
     super(props);
-    this.state = { n: 3, m: 3, numPlayers: 2 ,devState:null};
+    this.state = { n: 3, m: 3, numPlayers: 2, devState: null };
   }
   // Handle create button click
   handleClick = (e) => {
@@ -72,15 +72,14 @@ class App extends React.Component {
           </button>
         </div>
       );
-    } else if (this.state.devState === 'play'){
-    return (
-      // Commented Form and lobby out
-      <div>
-      {/* // Bootstrap container css class */}
-      
-      <div className='container'>
-        {/* form to create room */}
-        {/* <form >
+    } else if (this.state.devState === 'play') {
+      return (
+        // Commented Form and lobby out
+        <div>
+          {/* // Bootstrap container css class */}
+          <div className='container'>
+            {/* form to create room */}
+            {/* <form >
           <div className='form-group'>
             <label htmlFor='m'>Rows:</label>
             <input
@@ -121,30 +120,30 @@ class App extends React.Component {
           />
 
         </form> */}
-        {/* Lobby component from boardgames.io  */}
-     
-          <div>
-        <Lobby
-          gameServer={'https://' + window.location.hostname}
-          lobbyServer={'https://' + window.location.hostname}
-          gameComponents={[{ game: TicTacToe, board: TicTacToeBoard, },{ game: FiftySixGame, board: FiftySixBoard, }]}
-        />
-        </div>
-        </div>
+            {/* Lobby component from boardgames.io  */}
+
+            <div>
+              <Lobby
+                gameServer={'http://' + window.location.hostname+':8000'}
+                lobbyServer={'http://' + window.location.hostname+':8000'}
+                gameComponents={[{ game: TicTacToe, board: TicTacToeBoard }, { game: FiftySixGame, board: FiftySixBoard}]}
+              />
+            </div>
+          </div>
         </div>);
 
-        } else {
-        return (
-              <div>
-              <FiftySix playerID="0"/>
-               <FiftySix playerID="1"/>
-              <FiftySix playerID="2"/>
-              <FiftySix playerID="3"/>
-              <FiftySix playerID="4"/>
-              <FiftySix playerID="5"/> 
-              </div>
-    );
-        }
+    } else {
+      return (
+        <div>
+          <FiftySix playerID="0" />
+          <FiftySix playerID="1" />
+          <FiftySix playerID="2" />
+          <FiftySix playerID="3" />
+          <FiftySix playerID="4" />
+          <FiftySix playerID="5" />
+        </div>
+      );
+    }
 
   }
 }
