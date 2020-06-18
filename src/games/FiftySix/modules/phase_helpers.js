@@ -6,7 +6,6 @@ export function EndBidding(G,ctx){
     // TODO Add Dynamic first player/current player
     var max=[28,'N'];  
     
-    // eslint-disable-next-line no-unused-vars
     var player='0';
     for(var i=0;i<6;i++){
         if(max[0]<G.bids[i][0]){
@@ -16,8 +15,9 @@ export function EndBidding(G,ctx){
 
     }
     // TODO  Add tracking of bets
-    // TODO Add changing the next players
+
     G.trump=max[1];
+    // TODO Better way to change the next player? 
     G.playerNext=player;
 
 }

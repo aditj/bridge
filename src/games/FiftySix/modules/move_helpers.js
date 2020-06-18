@@ -1,3 +1,4 @@
+// function to calculate points given the cards
 function CalculatePoints(array) {
     var map = {
         'J': 3,
@@ -14,7 +15,6 @@ function CalculatePoints(array) {
     return points;
 }
 // Function to decide the winnner
-// TODO Check for ruffing
 function DecideWinner(G) {
     var trump = G.trump;
     var first_player_house = G.currentCards[0][1][1]
@@ -27,9 +27,12 @@ function DecideWinner(G) {
 
     }
     var winner;
+    // set winner variable to the first card of the current cards
     winner = G.currentCards[0];
+    // case for no trump 
     if (trump === 'N') {
         for (var i = 1; i < 6; i++) {
+            // only check cards which have house same as the first players house
             if (G.currentCards[i][1][1] === first_player_house) {
                 if (map[winner[1][0]] < map[G.currentCards[i][1][0]]) {
                     winner = G.currentCards[i]
@@ -38,27 +41,33 @@ function DecideWinner(G) {
         }
         return winner;
     }
+    // case for trump 
     else {
+
         var isTrumpPlayed = true;
         for (i = 0; i < 6; i++) {
+            // case if trump has been played
             if (isTrumpPlayed) {
                 if (G.currentCards[i][1][1] === trump) {
                     if (map[winner[1][0]] < map[G.currentCards[i][1][0]]) {
-                        winner = G.currentCards[i]
+                        winner = G.currentCards[i];
                     }
                 }
                 else {
-                    continue
+                    continue;
                 }
 
             }
+            // Case trump played for first time
             else if (G.currentCards[i][1][1] === trump) {
                 isTrumpPlayed = true;
-                winner = G.currentCards[i]
+                winner = G.currentCards[i];
 
 
             }
+            // Case No trump yet 
             else {
+                // only check cards which have house same as the first players house
                 if (G.currentCards[i][1][1] === first_player_house) {
                     if (map[winner[1][0]] < map[G.currentCards[i][1][0]]) {
                         winner = G.currentCards[i]
@@ -71,19 +80,20 @@ function DecideWinner(G) {
 
 }
 
-// function to execute after each turn
+// function to execute after each round (6 players have played their hand) of a play round
 
 export function EndPlayTurn(G, ctx) {
-
-
+    // decide winner and points
     var winner = DecideWinner(G)[0];
     var points = CalculatePoints(G.currentCards);
     G.points[G.players[winner].team] += points;
+    // empty currentCards
     G.currentCards = [];
     return winner;
 
 
 }
+
 // function to check if turn needs to be ended
 export function EndPlayTurnCheck(G) {
     if (G.currentCards.length === 6) {

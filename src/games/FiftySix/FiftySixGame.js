@@ -8,7 +8,7 @@ export const FiftySixGame = {
     name: '56',
     // can include setupData while creating a custom implementation of 56 game
     setup: (ctx, setupData) => {
-
+        // Define a start variable which will be returned by the setup function and will form the base of the Game object G.
         var start = {
             points: [0, 0],
             startPlayer: 0,
@@ -28,7 +28,7 @@ export const FiftySixGame = {
             bids: Array(6).fill([0, 'T']),
 
         };
-
+        // Populate the cards array of each of the player object by pushing them .
         for (let i = 0; i < 8; i++) {
             start.players[0].cards.push(start.deck.pop() || '');
             start.players[1].cards.push(start.deck.pop() || '');
@@ -39,10 +39,11 @@ export const FiftySixGame = {
         }
         return start;
     },
+    // Phases for the game
     phases: {
         bid: {
             moves: { Bid ,Message},
-            endIf: (G, ctx) => CheckEndBidding(G, ctx), // Change Name
+            endIf: (G, ctx) => CheckEndBidding(G, ctx), 
             onEnd: (G, ctx) => EndBidding(G, ctx),
             next: 'play',
             start: true,
@@ -51,6 +52,7 @@ export const FiftySixGame = {
         },
 
         play: {
+            // REMEMBER The move object is seperate from the overall moves.
             moves: { PlayCard,Message },
             next: 'bid',
             endIf:(G,ctx)=>EndPlay,
@@ -67,13 +69,16 @@ export const FiftySixGame = {
             }
         },
     },
+    
     turn: {
         moveLimit: 1,
         order: TurnOrder.RESET,
     },
+    // This playerView parameter helps remove parts of the game object you don't want the player to see, e.g. other people's cards.
     playerView: PlayerView.STRIP_SECRETS,
     minPlayers:6,
     maxPlayers:6,
+    
     moves: {
         Bid,
         PlayCard,

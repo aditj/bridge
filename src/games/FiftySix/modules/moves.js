@@ -1,5 +1,4 @@
 // Moves 
-// Move to bid
 import {EndPlayTurn,EndPlayTurnCheck} from './move_helpers.js'
 
 
@@ -10,17 +9,21 @@ export const PlayCard={
         G.players[ctx.currentPlayer].cards.splice(cardId,1);
         G.players[ctx.currentPlayer].numTurns--;
         // TODO is there a better way than setting a playerNext inside G?
+        // checking if a 'round' is over
         if(EndPlayTurnCheck(G)){
+            // decide the next player
             G.playerNext=EndPlayTurn(G,ctx);
 
         }
         else{
+            // decide the next player
             G.playerNext=(ctx.playOrderPos + 1) % 6;
         }
     },
     client:false,
         
 }
+// Move to bid
 
 export const Bid={
     move:(G,ctx,bid,trump)=>{
@@ -29,6 +32,7 @@ export const Bid={
     },
     client:false,
 };
+// Move for messaging --- TODO DEPRECATE THIS
 export const Message={
     move:(G,ctx,message,ID)=>{
         G.messages.push([message,ID]);
