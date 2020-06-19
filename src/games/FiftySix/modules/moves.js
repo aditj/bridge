@@ -38,5 +38,6 @@ export const Message={
         G.messages.push([message,ID]);
 
     },
+    noLimit:true,
     client:false,
 };
