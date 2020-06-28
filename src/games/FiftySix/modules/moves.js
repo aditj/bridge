@@ -1,7 +1,7 @@
 // Moves 
 import {EndPlayTurn,EndPlayTurnCheck} from './move_helpers.js'
 
-
+//  TODO add a structure of different variables for reference
 // Move to play a card
 export const PlayCard={
     move:(G,ctx,cardId)=>{

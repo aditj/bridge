@@ -8,7 +8,6 @@ import axios from 'axios';
 import './App.css';
 // eslint-disable-next-line
 import { Lobby } from 'boardgame.io/react';
-import logger from 'redux-logger';
 import { applyMiddleware, compose } from 'redux';
 import { SocketIO, Local } from 'boardgame.io/multiplayer';
 import { Client } from 'boardgame.io/react';
@@ -25,7 +24,7 @@ const FiftySix = Client({
   ),
 });
 
-const server = `https://${window.location.hostname}`;
+const server = `http://${window.location.hostname}:8000`;
 const importedGames=[
   {game:TicTacToe,board:TicTacToeBoard},
   {game:FiftySixGame,board:FiftySixBoard}
@@ -36,7 +35,7 @@ class App extends React.Component {
   // constructor 
   constructor(props) {
     super(props);
-    this.state = { n: 3, m: 3, numPlayers: 2, devState: null };
+    this.state = { n: 3, m: 3, numPlayers: 2, devState: 'yo' };
   }
   // Handle create button click
   handleClick = (e) => {
@@ -139,11 +138,11 @@ class App extends React.Component {
       return(
         <div>
           <FiftySix playerID="0" />
-          <FiftySix playerID="1" />
+          {/* <FiftySix playerID="1" />
           <FiftySix playerID="2" />
           <FiftySix playerID="3" />
           <FiftySix playerID="4" />
-          <FiftySix playerID="5" />
+          <FiftySix playerID="5" /> */}
         </div>
       );
     }

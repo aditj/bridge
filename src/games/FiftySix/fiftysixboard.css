@@ -1,3 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Arvo&display=swap');
+*{
+    font-family: 'Arvo';
+}
 .card{
     width:40px;
     height:80px;
@@ -12,16 +16,31 @@
     display:inline-flex;
 }
 .current-cards{
-    width: 200px;
-    height:200px;
+    width: 400px;
+    height:400px;
+    position: relative;
+margin: auto;
     border-radius: 50%;
 }
 .current-cards .card{
     position: absolute;
-    left: 50%;
-  top: 50%;
-  margin-left: -5px;
-  margin-top: -5px;
+    top:50%;
+    bottom:50%;
+right: 50%;
+left: 50%;
+    margin: auto;
+   
+
+}
+.current-cards .bid{
+    width: 50px;
+    position: absolute;
+    left:50%;
+    right:50%;
+    margin:auto;
+    top:50%;
+    bottom:50%;
+
 }
 
 .current-cards .card:nth-child(1){
@@ -42,29 +61,56 @@
 .current-cards .card:nth-child(6){
     transform: rotate(300deg) translate(100px);
 }
+.current-cards .player:nth-child(7){
+    transform: rotate(0deg) translate(140px);
 
+}
+.current-cards .player:nth-child(8){
+    transform: rotate(60deg) translate(140px);
+
+}
+.current-cards .player:nth-child(9){
+    transform: rotate(120deg) translate(140px);
+
+}
+.current-cards .player:nth-child(10){
+    transform: rotate(180deg) translate(140px);
+
+}
+.current-cards .player:nth-child(11){
+    transform: rotate(240deg) translate(140px);
+
+}
+.current-cards .player:nth-child(12){
+    transform: rotate(300deg) translate(140px);
+
+}
 .bid-board{
-    position: absolute;
-    left: 80%;
-  top: 50%;
+    position: relative;
+    text-align: center;
+    width: 50%;
+    margin: auto;
   border:1px black solid;
   border-radius: 5%;
 }
 .card-table{
-    left: 50%;
-    top: 50%;
-    position: absolute;
+    margin:auto;
+    position: relative;
     border:1px black solid;
-    width: 400px;
+    width:400px;
     height:400px;
-    border-radius: 20%;
+    border-radius: 50%;
+    text-align: center;
 }
 #card-table-label{
     position: relative;
-    left: 40%;
-  top: 0%;
-  font-size: xx-large;
+    margin:auto;
+
+  font-size: xxx-large;
  
+}
+.playArea{
+    text-align: center;
 }
 /* .chat-box{
     
