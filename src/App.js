@@ -35,7 +35,7 @@ class App extends React.Component {
   // constructor 
   constructor(props) {
     super(props);
-    this.state = { n: 3, m: 3, numPlayers: 2, devState: 'yo' };
+    this.state = { n: 3, m: 3, numPlayers: 2, devState: null };
   }
   // Handle create button click
   handleClick = (e) => {
