@@ -24,7 +24,7 @@ const FiftySix = Client({
   ),
 });
 
-const server = `http://${window.location.hostname}`;
+const server = `https://${window.location.hostname}`;
 const importedGames=[
   {game:TicTacToe,board:TicTacToeBoard},
   {game:FiftySixGame,board:FiftySixBoard}

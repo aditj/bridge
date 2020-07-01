@@ -1,14 +1,20 @@
 // Server for deployement on heroku
 import { Server } from 'boardgame.io/server';
+import { PostgresStore } from "bgio-postgres";
 import path from 'path';
 import Koa from 'koa';
 import serve from 'koa-static';
 import mount from 'koa-mount';
 import { TicTacToe } from './games/TicTacToe/TicTacToeGame';
 import { FiftySixGame } from './games/FiftySix/FiftySixGame';
+// Connecting to postgre on Heroku
+const db =new PostgresStore(
+ process.env.DATABASE_URL
+);
 // Server from boardgames.io
-const server = Server({ games: [TicTacToe,FiftySixGame] });
+const server = Server({ games: [TicTacToe,FiftySixGame] ,db:db});
 const PORT = process.env.PORT || 8000;
+
 
 // Build path relative to the server.js file
 const frontEndAppBuildPath = path.resolve(__dirname, '../build');
