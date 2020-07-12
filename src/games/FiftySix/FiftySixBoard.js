@@ -60,9 +60,7 @@ export default class FiftySixBoard extends Component {
         for (let k = 0; k < (this.props.G.messages.length | 0); k++) {
             messages.push(<div className='message'>{this.props.G.messages[k][1]}: {this.props.G.messages[k][0]}</div>)
         }
-        let playArea;
-        if(this.props.ctx.phase==='bid'){
-            playArea=<div>
+        let playArea=<div>
             <label><h3>Bid Amount:</h3> </label>
             <br></br>
             <input defaultValue='28'  name='bid' type='number' onChange={(e) => this.setState({ bid: e.target.value })}></input>
@@ -78,14 +76,12 @@ export default class FiftySixBoard extends Component {
 
             </select>
             <button class='btn btn-primary' onClick={() => this.Bid()}>Bid!</button>
-            </div>
-        }
-        else if(this.props.ctx.phase==='play'){
-            playArea=  <div className='cards'> 
+            <div className='cards'> 
                 
             {cards}
         </div>
-        }
+            </div>;
+      
         return (
             <div>
                 <div className='playArea'>
