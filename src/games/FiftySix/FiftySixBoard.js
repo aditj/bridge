@@ -25,12 +25,12 @@ export default class FiftySixBoard extends Component {
         this.props.moves.Bid(this.state.bid, this.state.trump);
     }
     render() {
-        let team=[];
-        let teammates=[];
+       
         let message;
         if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
        message= <div> <h3>Your Player IDs : {this.props.playerID}</h3></div>
         } else {
+            message= <div>Hello Player  {this.props.playerID}. </div>
             // teammates= [(this.props.playerID+2)%6,(this.props.playerID+4)%6];
             // team=[this.props.gameMetadata[teammates[0]]['name'],this.props.gameMetadata[teammates[1]]['name']];
             // message= <div> Hello {this.props.gameMetadata[this.props.playerID]['name']} , Your Team is {this.props.G.players[this.props.playerID]['team']} and your teammates are {team[0]} and {team[1]}</div>
