@@ -238,6 +238,7 @@ class App extends React.Component {
             {/* Lobby component from boardgames.io  */}
 
             <div>
+              {/* TODO: Create custom lobby */}
               <Lobby gameServer={server} lobbyServer={server} gameComponents={importedGames} />
             </div>
           </div>
