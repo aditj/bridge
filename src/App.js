@@ -24,10 +24,10 @@ const FiftySix = Client({
   ),
 });
 
-const server = `https://${window.location.hostname}`;
-const importedGames=[
-  {game:TicTacToe,board:TicTacToeBoard},
-  {game:FiftySixGame,board:FiftySixBoard}
+const server = `http://${window.location.hostname}:8000`;
+const importedGames = [
+  { game: TicTacToe, board: TicTacToeBoard },
+  { game: FiftySixGame, board: FiftySixBoard }
 ]
 
 // Main app react component
@@ -35,29 +35,85 @@ class App extends React.Component {
   // constructor 
   constructor(props) {
     super(props);
-    this.state = { n: 3, m: 3, numPlayers: 2, devState: null };
+    this.state = { n: 3, m: 3, numPlayers: 6, devState: 'play' };
   }
   // Handle create button click
   handleClick = (e) => {
     // prevent page reload
     e.preventDefault();
-    // AJAX request to create a room
-    axios({
-      method: 'post',
-      url: '/games/tic-tac-toe/create',
-      data: {
-        numPlayers: this.state.numPlayers,
-        setupData: {
-          m: this.state.m,
-          n: this.state.n,
+    if (e.target.value === 'Create Room') {
+      // AJAX request to create a room
+      axios({
+        method: 'post',
+        url: `${server}/games/56/create`,
+        data: {
+          numPlayers: this.state.numPlayers,
+          // Can add setupData if needed.
+          unlisted: document.getElementById('unlisted').checked,
         }
-      }
-    });
+      })
+        .then(function (response) {
+          document.getElementById('room-id').value=response.data.gameID
+          alert('Room Created with ID: '+response.data.gameID+'\n Share This ID with people you want to join.\n And join the room yourself with your name.')
+        })
+        .catch(function (error) {
+          // handle error
+          console.log(error);
+        });
+    }
+    if (e.target.value === 'Join Room') {
+      // AJAX request to join a room
+      let gameID = document.getElementById('room-id').value;
+      let name = document.getElementById('name').value;
+      let curr_state = []
+      axios.get(`${server}/games/56/${gameID}`)
+        .then(function (response) {
+          let next_player=0;
+          for(var i=0 ;i<6;i++ ) {
+            if(response.data.players[i].name===undefined){
+              next_player=i;
+              break;
+            }
+            
+          }
+          axios({
+            method: 'post',
+            url: `${server}/games/56/${gameID}/join`,
+            data: {
+              playerID: next_player,
+              playerName: name,
+              // Can add additional data if needed.
+
+            }
+          })
+            .then(function (response) {
+              console.log(response.data);
+            })
+            .catch(function (error) {
+              // handle error
+              console.log(error);
+            });
+        })
+        .catch(function (error) {
+          console.log(error);
+        })
+        .then(function () {
+          // always executed
+        });
+    }
   }
   // Functions to handle change of input variables
   updateM = (event) => {
     this.setState({ m: event.target.value });
   }
+  updateName = (event) => {
+    this.setState({ name: event.target.value });
+  }
+  updateGameID = (event) => {
+    this.setState({ gameID: event.target.value });
+  }
+
+
   updateN = (event) => {
     this.setState({ n: event.target.value });
   }
@@ -67,7 +123,7 @@ class App extends React.Component {
   // Render the content
   render() {
     if (this.state.devState === null) {
-      return(
+      return (
         <div>
           <p>Play as</p>
           <button onClick={() => this.setState({ devState: "dev" })}>
@@ -79,7 +135,7 @@ class App extends React.Component {
         </div>
       );
     } else if (this.state.devState === 'play') {
-      return(
+      return (
         <div>
           {/* // Bootstrap container css class */}
           <div className='container'>
@@ -125,17 +181,71 @@ class App extends React.Component {
           />
 
         </form> */}
+            {/* TODO: Add support for choosing which game. */}
+            <form>
+
+              <h2 className='text-center'>Create A new Room</h2>
+              <div className='form-check'>
+
+                <input
+                  className='form-check-input'
+                  type="checkbox"
+                  id='unlisted'
+                  name='unlisted'
+
+                  defaultChecked={true} />
+                <label className='form-check-label' htmlFor='unlisted'>Unlisted</label>
+              </div>
+              <div className='form-group'>
+                <input
+                  className='form-control btn btn-primary'
+                  type="button"
+                  value="Create Room"
+                  onClick={this.handleClick}
+                />
+
+              </div>
+            </form>
+            <form>
+              <h2 className='text-center'>Join an existing game room</h2>
+              <div className='form-group'>
+                <label htmlFor='room-id'>Room ID:</label>
+                <input
+                  className='form-control'
+                  type="text"
+                  id='room-id'
+                  defaultValue=''
+
+                />
+                <label htmlFor='name'>Name:</label>
+                <input
+                  className='form-control'
+                  type="text"
+                  id='name'
+                  defaultValue=''
+                />
+                <input
+                  className='form-control btn btn-primary'
+                  type="button"
+
+                  value="Join Room"
+                  onClick={this.handleClick}
+                />
+
+              </div>
+            </form>
+
             {/* Lobby component from boardgames.io  */}
 
             <div>
-              <Lobby gameServer={server} lobbyServer={server} gameComponents={ importedGames } />
+              <Lobby gameServer={server} lobbyServer={server} gameComponents={importedGames} />
             </div>
           </div>
         </div>
-        );
+      );
 
     } else {
-      return(
+      return (
         <div>
           <FiftySix playerID="0" />
           {/* <FiftySix playerID="1" />
